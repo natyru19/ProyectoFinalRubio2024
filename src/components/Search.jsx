@@ -1,16 +1,12 @@
-import { Pressable, StyleSheet, Text, View, TextInput } from 'react-native'
-import React, { useState } from 'react'
-import { EvilIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, View, TextInput } from 'react-native'
+import React from 'react'
 import { colors } from '../global/colors'
 
 
-const Search = ({goBack=()=>{}}) => {
-    
-    const [keyWord, setKeyWord] = useState ('')
+const Search = ({keyWord, setKeyWord }) => {
 
   return (
+    
     <View style={styles.container}>
         <TextInput
             style={styles.input}
@@ -18,15 +14,7 @@ const Search = ({goBack=()=>{}}) => {
             value={keyWord}
             onChangeText={setKeyWord}
         />      
-        <Pressable style={styles.pressable}>
-            <EvilIcons name="search" size={24} color="black" />
-        </Pressable>
-        <Pressable style={styles.pressable}>
-            <EvilIcons name="trash" size={24} color="black" />
-        </Pressable>
-        <Pressable onPress={goBack} style={styles.pressable}>
-        <MaterialCommunityIcons name="keyboard-backspace" size={20} color="black" />
-        </Pressable>
+        
     </View>
   )
 }
@@ -35,13 +23,18 @@ export default Search
 
 const styles = StyleSheet.create({
     container:{
-        flexDirection: 'row'
+        flexDirection: 'row',
+        backgroundColor: 'red',
+        height: 50,
+        width: '100%',
+        justifyContent: 'space-evenly',
+        alignItems:'center'
     },
 
     input:{
         backgroundColor: colors.crema,
-        height: 20,
-        width: '70%',
+        height: 40,
+        width: '90%',
         borderRadius: 5,
         margin: 5,
     },

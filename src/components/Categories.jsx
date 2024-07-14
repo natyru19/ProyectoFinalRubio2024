@@ -1,27 +1,48 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, Pressable, StyleSheet, Text } from 'react-native'
 import categories from '../data/categories.json'
-import CategoryItem from './CategoryItem'
 import { colors } from '../global/colors'
 
-const Categories = () => {
-  return (
-    <View style={styles.categoriesContainer}>      
-      <FlatList
-        keyExtractor={category => category}
-        data={categories}
-        renderItem={({item}) => <CategoryItem 
-          category={item}/>}          
+const Categories = ({navigation}) => {
+
+  const goToItemList = (item)=>{
+    navigation.navigate('ItemListScreen', item)
+  }
+
+  return (    
+      <FlatList contentContainerStyle={styles.flat}
+          data={categories}
+          renderItem={({item})=> 
+          <Pressable
+            style={styles.pressable}
+            onPress={()=>{goToItemList({item})}}
+          >
+            <Text>{item}</Text>
+          </Pressable>}          
       />
-    </View>
+    
   )
 }
 
 export default Categories
 
 const styles = StyleSheet.create({
-  categoriesContainer:{
-    backgroundColor:colors.verdeClaro,
-    alignItems:'center'
+ 
+  flat:{
+    flexDirection: 'row',
+    flex: 1,
+    flexWrap:'wrap',
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor:colors.verdeClaro
+  },
+
+  pressable:{
+    height: 100,
+    width: 100,
+    backgroundColor:'white',
+    margin: 20,
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })

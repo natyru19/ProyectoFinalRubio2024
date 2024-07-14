@@ -1,13 +1,11 @@
-import { StyleSheet, Text, View, ScrollView, Image, Button } from 'react-native'
+import { StyleSheet, View, ScrollView, Image } from 'react-native'
 import React from 'react'
-import Footer from '../components/Footer'
+
 import Header from '../components/Header'
+import Categories from '../components/Categories'
 
-const Inicio = ({navigation}) => {
+const HomeScreen = ({navigation}) => {
 
-    const irAColeccion = () => {
-        navigation.navigate('Coleccion')
-    }
 
   return (
     <View style={styles.container}>
@@ -35,42 +33,29 @@ const Inicio = ({navigation}) => {
                     style={styles.img}
                     resizeMode='cover'
                 />
-            </View>
-                        
+            </View>     
       </ScrollView>
       </View>
-        <View>
-            <Button 
-                title='Coleccion'
-                onPress={() => irAColeccion()}
-            />
-        </View>
+      <Categories navigation={navigation}/>
     </View>
   )
 }
 
-export default Inicio
+export default HomeScreen
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: 'yellow',
-        height: '100%',
-        //justifyContent: 'center'
-
+      flex:1,
+      backgroundColor: 'yellow',
+      height: '100%'
     },
-    titulo:{
-        fontFamily: 'Diplomata',
-        fontSize: 30,
-        alignSelf: 'center',
-        padding: 10
-      },
+    
+    carrusel:{
+      shadowOpacity: 0.5
+    },
 
-      carrusel:{
-        shadowOpacity: 0.5,
-      },
-
-      img:{
-        height: 200,
-        width: 400
-      }
+    img:{
+      height: 200,
+      width: 400
+    },
 })
