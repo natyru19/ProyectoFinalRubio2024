@@ -1,24 +1,26 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import React from 'react'
 import products from '../data/products.json'
-import Header from '../components/Header'
-import Search from '../components/Search'
 import ProductItem from '../components/ProductItem'
-import Home from '../components/Search'
+import ItemDetail from '../components/ItemDetail'
 
-const ItemListCategory = () => {
+
+
+const ItemDetailScreen = ({navigation, route}) => {
+  const {item} = route.params
+  
   return (
     <View style={styles.container}>
-        <Text style={styles.text}>Detalle</Text>
-        <Search />      
+      
+      <ItemDetail item={item} />
     </View>
   )
 }
 
-export default ItemListCategory
+export default ItemDetailScreen
 
 const styles = StyleSheet.create({
     container:{
+        flex:1,
         alignItems: 'center'
     },
 

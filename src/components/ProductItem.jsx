@@ -1,12 +1,14 @@
-import { StyleSheet, Text, Image, View } from 'react-native'
+import { StyleSheet, Text, Image, View, Pressable } from 'react-native'
 
 
-const ProductItem = ({item}) => {
+
+const ProductItem = ({item, navigation}) => {
+
+ 
   
   return (
     <View style={styles.container}>
-      
-      <Text style={styles.txt}>{item.name}</Text>
+      <Text style={styles.text}>{item.name}</Text>
       <Image
         source={{uri: item.img}}
         resizeMode='contain'
@@ -20,7 +22,6 @@ export default ProductItem
 
 const styles = StyleSheet.create({
   container:{
-    flex:1,
     marginTop:10,
     borderColor: 'black',
     borderWidth: 1,
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
   img:{
     height:200
   },
-  txt:{
+  text:{
     alignSelf:'center',
     padding:5,
     fontSize:20

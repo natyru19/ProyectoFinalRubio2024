@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     flexWrap:'wrap',
     justifyContent: 'center',
     alignItems:'center',
+    alignContent:'center',
     backgroundColor:colors.verdeClaro
   },
 

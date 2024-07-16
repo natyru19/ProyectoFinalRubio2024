@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, Pressable, StyleSheet, View } from 'react-native'
 import products from '../data/products.json'
 import ProductItem from '../components/ProductItem'
 import Search from '../components/Search'
@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react'
 const ItemListScreen = ({navigation , route}) => {
     const {item} = route.params
     //filtrar de products los que product.category === item(item es la categoria que vino por prop, seleccionada por el user)
-    
+    const goToItemDetail = (item)=>{
+      navigation.navigate('ItemDetailScreen', item)
+    }
     const filteredProducts  = products.filter((product)=> product.category === item)
     const [keyWord, setKeyWord] = useState ('')
     const [searchedProducts, setSearchedProducts] = useState([filteredProducts]) 
@@ -24,9 +26,15 @@ const ItemListScreen = ({navigation , route}) => {
       <Search keyWord={keyWord} setKeyWord = {setKeyWord} />
       <FlatList
         data={searchedProducts}
-        renderItem={({item})=> <ProductItem item= {item}/>}
+        renderItem={({item})=>
+          <Pressable onPress={()=> goToItemDetail({item})}>
+            <ProductItem 
+              item= {item} 
+              navigation={navigation}
+            />
+          </Pressable>
+        }
       >
-
       </FlatList>
     </View>
   )

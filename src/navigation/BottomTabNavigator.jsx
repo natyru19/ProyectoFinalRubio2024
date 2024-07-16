@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator()
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={{tabBarShowLabel:false}}
+      screenOptions={{tabBarShowLabel:false, headerShown:false}}
     >
         <Tab.Screen name="tabHome" component={HomeStackNavigator} options={{
           tabBarIcon: ({ focused }) => (
