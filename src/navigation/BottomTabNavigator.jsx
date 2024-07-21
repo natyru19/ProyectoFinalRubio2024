@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeStackNavigator from './HomeStackNavigator';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Entypo } from '@expo/vector-icons';
 import { colors } from '../global/colors'
 import LocationScreen from '../screens/LocationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import FavoriteScreen from '../screens/FavoritesScreen'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { FontAwesome } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator()
 
@@ -27,6 +29,10 @@ const BottomTabNavigator = () => {
         <Tab.Screen name="tabProfile" component={ProfileScreen} options={{
           tabBarIcon: ({focused}) => (
             <MaterialCommunityIcons name="account" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 36 : 33} />
+          ),
+        }} /><Tab.Screen name="tabFavorites" component={FavoriteScreen} options={{
+          tabBarIcon: ({focused}) => (
+            <FontAwesome name="heart" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 30 : 27} />
           ),
         }} />
     </Tab.Navigator>

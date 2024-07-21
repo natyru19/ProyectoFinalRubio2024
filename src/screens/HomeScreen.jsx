@@ -1,11 +1,10 @@
 import { StyleSheet, View, ScrollView, Image } from 'react-native'
 import React from 'react'
-
 import Header from '../components/Header'
 import Categories from '../components/Categories'
 
-const HomeScreen = ({navigation}) => {
 
+const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>

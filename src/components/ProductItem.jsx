@@ -1,10 +1,7 @@
-import { StyleSheet, Text, Image, View, Pressable } from 'react-native'
-
+import { StyleSheet, Text, Image, View } from 'react-native'
 
 
 const ProductItem = ({item, navigation}) => {
-
- 
   
   return (
     <View style={styles.container}>

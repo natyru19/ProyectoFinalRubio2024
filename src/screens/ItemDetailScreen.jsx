@@ -1,16 +1,11 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import products from '../data/products.json'
-import ProductItem from '../components/ProductItem'
 import ItemDetail from '../components/ItemDetail'
-
 
 
 const ItemDetailScreen = ({navigation, route}) => {
   const {item} = route.params
-  
   return (
     <View style={styles.container}>
-      
       <ItemDetail item={item} />
     </View>
   )

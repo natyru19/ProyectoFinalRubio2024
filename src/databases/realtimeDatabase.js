@@ -1,0 +1,1 @@
+export const baseUrl = "https://multiforma-e69ad-default-rtdb.firebaseio.com/"

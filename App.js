@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import { colors } from './src/global/colors'
 import { useFonts } from 'expo-font';
@@ -8,6 +8,8 @@ import * as SplashScreen from 'expo-splash-screen'
 
 import Navigator from './src/navigation/Navigator'
 
+import { Provider } from 'react-redux';
+import store from './src/store'
 
 
 export default function App() {
@@ -28,7 +30,9 @@ export default function App() {
   return (
 
     <SafeAreaView style={styles.container}>
-       <Navigator />
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
     </SafeAreaView>
       
   );

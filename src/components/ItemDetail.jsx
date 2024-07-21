@@ -1,6 +1,16 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Button, Pressable } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { addFavoriteItem } from '../features/FavoritesSlice'
 
 const ItemDetail = ({item}) => {
+
+  const dispatch = useDispatch()
+
+  const handleAddFavorites = () => {
+    dispatch(addFavoriteItem)
+    dispatch(addFavoriteItem({...item, quantity: 1})) 
+  }
+
   return (
         <View style={styles.container}>
           <Text style={styles.title}>{item.name}</Text>
@@ -12,6 +22,7 @@ const ItemDetail = ({item}) => {
           <Text style={styles.desc}>{item.desc}</Text>
           <Text>Cantidad disponible: {item.stock}</Text>
           <Text style={styles.price}>$ {item.price}</Text>
+          <Button title='Agregar a favoritos' onPress={handleAddFavorites}></Button>
             
         </View>
   )
@@ -47,5 +58,4 @@ const styles = StyleSheet.create({
         padding:15,
         fontSize:25
       }
-
 })

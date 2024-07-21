@@ -1,10 +1,13 @@
 import { FlatList, Pressable, StyleSheet, Text } from 'react-native'
-import categories from '../data/categories.json'
 import { colors } from '../global/colors'
+import { useGetCategoriesQuery } from '../services/shopServices'
+
 
 const Categories = ({navigation}) => {
 
-  const goToItemList = (item)=>{
+  const {data: categories} = useGetCategoriesQuery()
+
+  const goToItemListScreen = (item)=>{
     navigation.navigate('ItemListScreen', item)
   }
 
@@ -14,7 +17,7 @@ const Categories = ({navigation}) => {
           renderItem={({item})=> 
           <Pressable
             style={styles.pressable}
-            onPress={()=>{goToItemList({item})}}
+            onPress={()=>{goToItemListScreen({item})}}
           >
             <Text>{item}</Text>
           </Pressable>}          
