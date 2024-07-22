@@ -1,15 +1,12 @@
-import { StyleSheet, Text, View, Image, Platform } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
+import { colors } from '../global/colors'
 
 
-const Header = () => {
+const Header = ({title}) => {
   return (
-        <View style={styles.container}>
-            <Image 
-            source={require('../../assets/img/header.jpg')}
-            style={styles.header}
-            resizeMode='cover'
-            />
-        </View>              
+    <View style={styles.container}>
+        <Text style={styles.text}>{title}</Text>
+    </View>             
   )
 }
 
@@ -17,14 +14,18 @@ export default Header
 
 const styles = StyleSheet.create({
     container:{
-        height:100,
-        width:'100%',        
-        backgroundColor:'red',
-        paddingTop: Platform.OS === 'ios' ? 0 : 48
+        height: 100,
+        width: '100%',        
+        backgroundColor: colors.marronClaro,
+        paddingTop: Platform.OS === 'ios' ? 0 : 48,
+        justifyContent: 'center',
+        alignItems: 'center'
 
     },
-        header:{
-            width:'100%',
-            height:100            
-    }
+
+    text: {
+        color: colors.grisClaro,
+        fontSize: 22,
+        fontFamily: 'Diplomata'
+      }
 })

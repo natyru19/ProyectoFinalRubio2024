@@ -8,7 +8,6 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Header />
       <View style={styles.carrusel}>
       <ScrollView horizontal>
                 

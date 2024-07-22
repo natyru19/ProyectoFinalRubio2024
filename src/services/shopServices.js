@@ -4,6 +4,7 @@ import { baseUrl } from "../databases/realtimeDatabase";
 
 export const shopApi = createApi({
     
+    reducerPath: "shopApi",
     baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
     endpoints: (builder) => ({
         getCategories: builder.query({

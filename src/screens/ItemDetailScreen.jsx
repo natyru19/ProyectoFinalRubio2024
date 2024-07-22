@@ -3,7 +3,9 @@ import ItemDetail from '../components/ItemDetail'
 
 
 const ItemDetailScreen = ({navigation, route}) => {
+
   const {item} = route.params
+  
   return (
     <View style={styles.container}>
       <ItemDetail item={item} />

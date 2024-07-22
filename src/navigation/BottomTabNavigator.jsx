@@ -4,33 +4,33 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Entypo } from '@expo/vector-icons';
 import { colors } from '../global/colors'
 import LocationScreen from '../screens/LocationScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import FavoriteScreen from '../screens/FavoritesScreen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
+import ProfileStackNavigator from './ProfileStackNavigator';
+import FavoritesStackNavigator from './FavoritesStackNavigator';
 
 const Tab = createBottomTabNavigator()
 
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={{tabBarShowLabel:false, headerShown:false}}
+      screenOptions={{tabBarShowLabel:false, headerShown:false, tabBarStyle: styles.tabBar}}
     >
-        <Tab.Screen name="tabHome" component={HomeStackNavigator} options={{
+        <Tab.Screen name="Home" component={HomeStackNavigator} options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons name="home" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 36 : 33}  />
           ),
         }} />
-        <Tab.Screen name="tabLocation" component={LocationScreen} options={{
+        <Tab.Screen name="Location" component={LocationScreen} options={{
           tabBarIcon: ({ focused }) => (
             <Entypo name="location"  color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 30 : 27} />
           ),
         }}/> 
-        <Tab.Screen name="tabProfile" component={ProfileScreen} options={{
+        <Tab.Screen name="Profile" component={ProfileStackNavigator} options={{
           tabBarIcon: ({focused}) => (
             <MaterialCommunityIcons name="account" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 36 : 33} />
           ),
-        }} /><Tab.Screen name="tabFavorites" component={FavoriteScreen} options={{
+        }} /><Tab.Screen name="Favorites" component={FavoritesStackNavigator} options={{
           tabBarIcon: ({focused}) => (
             <FontAwesome name="heart" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 30 : 27} />
           ),
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     },
 
     tabBar:{
-      backgroundColor: colors.crema
+      backgroundColor: colors.marronClaro
     }
 })

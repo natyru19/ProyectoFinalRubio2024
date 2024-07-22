@@ -10,6 +10,7 @@ const ItemListScreen = ({navigation , route}) => {
   const {item: category} = route.params
     
     const {data: products, isLoading} = useGetProductsByCategoryQuery(category)
+    
     const goToItemDetailScreen = (item)=>{
       navigation.navigate('ItemDetailScreen', item)
     }
