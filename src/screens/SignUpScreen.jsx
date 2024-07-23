@@ -5,7 +5,7 @@ import InputForm from "../components/InputForm";
 import { useSignUpMutation } from '../services/authService';
 import { useDispatch } from "react-redux";
 import { setUser } from '../features/UserSlice'
-
+import { signupSchema } from "../validations/signUpSchema";
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -31,7 +31,26 @@ const SignUpScreen = ({ navigation }) => {
   }, [result])
 
   const onSubmit = () => {
-    triggerSignUp({email, password, returnSecureToken: true})
+
+    try {
+      setErrorMail("");
+      setErrorPassword("");
+      setErrorConfirmPassword("");
+      signupSchema.validateSync({ email, password, confirmPassword })
+      triggerSignUp({ email, password, returnSecureToken: true })
+    
+    } catch (err) {
+        switch (err.path) {
+          case "email":
+            setErrorMail(err.message);
+          case "password":
+            setErrorPassword(err.message);
+          case "confirmPassword":
+            setErrorConfirmPassword(err.message);
+          default:
+            break;
+        }
+      }
   }
 
   return (

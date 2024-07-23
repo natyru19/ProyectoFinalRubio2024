@@ -5,7 +5,7 @@ import Header from '../components/Header'
 const LocationScreen = () => {
   return (
     <View>
-      <Header title='Ubicaciòn' />
+      <Header title='Ubicación' />
       <Text>LocationScreen</Text>
     </View>
   )

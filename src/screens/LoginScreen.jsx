@@ -1,10 +1,12 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../global/colors";
 import InputForm from "../components/InputForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useSignInMutation } from "../services/authService";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/UserSlice";
 
 
 const LoginScreen = ({ navigation }) => {
@@ -12,9 +14,22 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch()
+  const [triggerSignIn, result] = useSignInMutation()
+
+  useEffect(()=>{
+    if(result.isSuccess) {
+      dispatch(
+        setUser({
+          email: result.data.email,
+          idToken: result.data.idToken
+        })
+      )
+    }
+  }, [result])
 
   const onSubmit = ()=> {
-    //login
+    triggerSignIn({email, password, returnSecureToken: true})
   }
 
   return (

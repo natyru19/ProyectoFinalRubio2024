@@ -16,21 +16,21 @@ const BottomTabNavigator = () => {
     <Tab.Navigator
       screenOptions={{tabBarShowLabel:false, headerShown:false, tabBarStyle: styles.tabBar}}
     >
-        <Tab.Screen name="Home" component={HomeStackNavigator} options={{
+        <Tab.Screen name="Inicio" component={HomeStackNavigator} options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons name="home" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 36 : 33}  />
           ),
         }} />
-        <Tab.Screen name="Location" component={LocationScreen} options={{
+        <Tab.Screen name="Ubicacion" component={LocationScreen} options={{
           tabBarIcon: ({ focused }) => (
             <Entypo name="location"  color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 30 : 27} />
           ),
         }}/> 
-        <Tab.Screen name="Profile" component={ProfileStackNavigator} options={{
+        <Tab.Screen name="Perfil" component={ProfileStackNavigator} options={{
           tabBarIcon: ({focused}) => (
             <MaterialCommunityIcons name="account" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 36 : 33} />
           ),
-        }} /><Tab.Screen name="Favorites" component={FavoritesStackNavigator} options={{
+        }} /><Tab.Screen name="Favoritos" component={FavoritesStackNavigator} options={{
           tabBarIcon: ({focused}) => (
             <FontAwesome name="heart" color={focused ? '#007aff' : '#8e8e90'} size={ focused ? 30 : 27} />
           ),

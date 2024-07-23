@@ -1,13 +1,9 @@
-import { useCallback, useState } from 'react'
-
+import { useCallback } from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native';
-
 import { colors } from './src/global/colors'
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen'
-
 import Navigator from './src/navigation/Navigator'
-
 import { Provider } from 'react-redux';
 import store from './src/store'
 

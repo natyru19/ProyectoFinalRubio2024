@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import ProfileScreen from '../screens/ProfileScreen'
 import ImageScreen from '../screens/ImageScreen'
 

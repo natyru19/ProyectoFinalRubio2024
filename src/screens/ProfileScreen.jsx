@@ -4,7 +4,7 @@ import { colors } from '../global/colors'
 import Header from '../components/Header'
 
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
 
   const [image, setImage] = useState(null)
   
@@ -17,11 +17,13 @@ const ProfileScreen = () => {
         <>
         <Image 
           style={styles.img}
-          resizeMode='cover'
+          resizeMode='contain'
           source={require("../../assets/img/user.jpg")}
         />
-        <Pressable style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
-          <Text>Agregar foto de perfil</Text>
+        <Pressable 
+          onPress={() => navigation.navigate("ImageScreen")}
+          style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
+          <Text style={styles.text}>Cambiar foto de perfil</Text>
         </Pressable>
         </>
       }
@@ -38,8 +40,20 @@ const styles = StyleSheet.create({
   },
 
   img:{
-    height: 100,
-    width: 100
+    height: 150,
+    width: 150,
+    marginVertical: 20,
+    borderWidth: 2,
+    borderRadius: 100,
+    borderColor: colors.grisClaro,
+    shadowColor: "#000",
+    shadowOffset:{
+      width: 0,
+      height: 4,
+      },
+      shadowOpacity: 0.30,
+      shadowRadius: 4.65,
+      elevation: 8,
   },
 
   pressable:{
@@ -49,6 +63,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     width: "80%",
+    height: 40,
     paddingVertical: 7
+  },
+
+  text:{
+    color: 'grey'
   }
 })
