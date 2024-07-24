@@ -1,35 +1,56 @@
-import { useState } from 'react'
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import { colors } from '../global/colors'
 import Header from '../components/Header'
+import { useDispatch, useSelector } from 'react-redux'
+import { useGetProfileImageQuery } from '../services/shopServices'
+import { clearUser } from '../features/UserSlice'
 
 
 const ProfileScreen = ({navigation}) => {
 
-  const [image, setImage] = useState(null)
+  const dispatch = useDispatch()
+  //const { truncateSessionTable } = useDB()
+  const {imageCamera, localId} = useSelector((state) => state.auth.value)
+  const {data: imageFromBase} = useGetProfileImageQuery(localId)
   
+  const defaultImageRoute = "../../assets/img/noUser.png"
 
+  const logOut =  async () => {
+    if (Platform.OS !== "web") await truncateSessionsTable()
+    dispatch(clearUser());
+  }
+  
   return (
     <View style={styles.container}>
       <Header title='Perfil' />
-      {image ?
-        null :
-        <>
+      {imageFromBase || imageCamera ? (
         <Image 
           style={styles.img}
           resizeMode='contain'
-          source={require("../../assets/img/user.jpg")}
+          source={{uri: imageFromBase?.image || imageCamera }}
         />
-        <Pressable 
-          onPress={() => navigation.navigate("ImageScreen")}
-          style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
-          <Text style={styles.text}>Cambiar foto de perfil</Text>
-        </Pressable>
-        </>
-      }
+      )
+      : (
+      <Image 
+        style={styles.img}
+        resizeMode='contain'
+        source={require(defaultImageRoute)}
+      />
+    )}
+    <Pressable 
+      onPress={() => navigation.navigate("ImageScreen")}
+      style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
+      {imageCamera ? <Text style={styles.text}>Cambiar foto</Text> : <Text style={styles.text}>Agregar foto</Text>}
+    </Pressable>
+    <Pressable 
+      onPress={(logOut)}
+      style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
+      <Text style={styles.text}>Cerrar sesión</Text>
+    </Pressable>
     </View>
   )
 }
+
 
 export default ProfileScreen
 

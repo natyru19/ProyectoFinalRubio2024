@@ -2,13 +2,19 @@ import { StyleSheet, View, Image, Text, Pressable } from 'react-native'
 import { useState } from 'react'
 import { colors } from '../global/colors'
 import * as ImagePicker from 'expo-image-picker';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCameraImage } from '../features/UserSlice';
+import { useGetProfileImageQuery, usePostProfileImageMutation } from '../services/shopServices';
 
-const ImageScreen = () => {
+const ImageScreen = ({navigation}) => {
 
  const [image, setImage] = useState(null)
+ const [isImageFromCamera, setIsImageFromCamera] = useState(false)
+ const [triggerPostImage, result] = usePostProfileImageMutation()
  const dispatch = useDispatch()
+ const {localId} = useSelector((state) => state.auth.value)
+ const {data: imageFromBase} = useGetProfileImageQuery(localId)
+
 
  const verifyCameraPermisson = async () => {
   const { status } = await ImagePicker.requestCameraPermissionsAsync()
@@ -20,35 +26,43 @@ const ImageScreen = () => {
 
  const pickImage = async () => {
 
-  const isCameraOK = await verifyCameraPermisson()
-  if(isCameraOK) {
+  const isCameraOk = await verifyCameraPermisson()
+  setIsImageFromCamera(true)
+
+  if (isCameraOk) {
     let result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [1, 1],
       base64: true,
       quality: 0.2,
-    });
+    })
 
     if (!result.canceled) {
       setImage(`data:image/jpeg;base64,${result.assets[0].base64}`);
     }
   }
- }
+}
 
- const confirmImage = () => {
-  dispatch(setCameraImage({image, localId}))
-  navigation.navigate()
- }
+const confirmImage = () => {
+
+  dispatch(setCameraImage(image))
+  triggerPostImage({image, localId})
+  if(isImageFromCamera) {
+    ExpoLibrary.createAssetAsync(imageURI)
+  }
+  navigation.goBack()
+  
+}
 
   return (
     <View style={styles.container}>
-      {image ?
+      {image || imageFromBase ?
         <>
           <Image
             style={styles.img}
             resizeMode='contain'
-            source={{uri: image}}
+            source={{uri: image || imageFromBase?.image}}
           />
           <Pressable
             onPress={pickImage} 

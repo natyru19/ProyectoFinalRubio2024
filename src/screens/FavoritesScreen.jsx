@@ -1,18 +1,15 @@
 import { StyleSheet, View, FlatList, Pressable, Text } from 'react-native'
 import { useSelector } from 'react-redux';
 import ProductItem from '../components/ProductItem';
-import { colors } from '../global/colors'
 import Header from '../components/Header';
 
 
 const FavoritesScreen = ({navigation}) => {
 
-   const {items: products} = useSelector((state) => state.favorites.value)
+  const {items: products} = useSelector((state) => state.favorites.value)
 
-  const displayBtn = (false)
-
-   const goToItemDetailScreen = (item, displayBtn)=>{
-    navigation.navigate('ItemDetailScreen', item, displayBtn)
+  const goToItemDetailScreen = (item)=>{
+    navigation.navigate('ItemDetailScreen', item)
   }
     
 
@@ -24,7 +21,7 @@ const FavoritesScreen = ({navigation}) => {
         data={products}
         renderItem={({item})=>{
             return <>
-            <Pressable onPress={()=>goToItemDetailScreen({item, displayBtn})}>
+            <Pressable onPress={()=>goToItemDetailScreen({item})}>
               <ProductItem item={item} navigation={navigation}/>
             </Pressable>
             </>

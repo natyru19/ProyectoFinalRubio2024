@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { addFavoriteItem } from '../features/FavoritesSlice'
 import { colors } from '../global/colors'
 
+
 const ItemDetail = ({item}) => {
 
   const dispatch = useDispatch()
