@@ -19,7 +19,7 @@ const Categories = ({navigation}) => {
             style={styles.pressable}
             onPress={()=>{goToItemListScreen({item})}}
           >
-            <Text>{item}</Text>
+            <Text style={styles.text}>{item}</Text>
           </Pressable>}          
       />
     
@@ -29,7 +29,6 @@ const Categories = ({navigation}) => {
 export default Categories
 
 const styles = StyleSheet.create({
- 
   flat:{
     flexDirection: 'row',
     flex: 1,
@@ -37,16 +36,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems:'center',
     alignContent:'center',
-    backgroundColor:colors.verdeClaro
+    backgroundColor:colors.azul
   },
 
   pressable:{
     height: 100,
     width: 100,
-    backgroundColor:'white',
+    backgroundColor: colors.gris,
     margin: 20,
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+
+  text:{
+    color: colors.azul,
+    fontSize: 16
   }
 })

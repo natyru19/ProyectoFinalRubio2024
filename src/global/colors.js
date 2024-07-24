@@ -1,11 +1,9 @@
 export const colors={
-    verdeClaro: "#91DDCF",
-    verdeCrema: "#C8CFA0",
-    crema: "#FFE0B5",
-    rosadoClaro:"#E1ACAC",
-    grisOscuro: "#9CAFAA",
-    grisClaro: "#D6DAC8",
-    amarilloCrema: "#FBF3D5",
-    marronClaro: "#EFBC9B"
-
+    gris: "#B4B4B8",    
+    crema: "#FBF3D5",
+    marron: "#D4BDAC",
+    azul: "#405D72",
+    crema2:"#F7E7DC",
+    grisOscuro:"#758694",
+    fondo: "#f2f1ef"
 }

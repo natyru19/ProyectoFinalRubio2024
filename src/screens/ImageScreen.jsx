@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCameraImage } from '../features/UserSlice';
 import { useGetProfileImageQuery, usePostProfileImageMutation } from '../services/shopServices';
+import Header from '../components/Header';
 
 const ImageScreen = ({navigation}) => {
 
@@ -57,6 +58,7 @@ const confirmImage = () => {
 
   return (
     <View style={styles.container}>
+      <Header title='Perfil' />
       {image || imageFromBase ?
         <>
           <Image
@@ -73,6 +75,11 @@ const confirmImage = () => {
             onPress={confirmImage} 
             style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
             <Text style={styles.text}>Confirmar foto</Text>
+          </Pressable>
+          <Pressable
+            onPress={()=>navigation.goBack()} 
+            style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
+            <Text style={styles.text}>Volver</Text>
           </Pressable>
         </> 
         :
@@ -101,11 +108,12 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     alignItems: 'center',
+    backgroundColor: colors.fondo
   },
 
   pressable:{
     marginTop: 10,
-    backgroundColor: colors.crema,
+    backgroundColor: colors.gris,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
@@ -120,7 +128,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     borderWidth: 2,
     borderRadius: 100,
-    borderColor: colors.grisClaro,
+    borderColor: colors.azul,
     shadowColor: "#000",
     shadowColor: "#000",
     shadowOffset:{
@@ -138,10 +146,10 @@ const styles = StyleSheet.create({
     width: 150,
     borderWidth: 2,
     borderRadius: 100,
-    borderColor: colors.grisClaro,
+    borderColor: colors.azul,
     justifyContent: 'center'
   },
   text:{
-    color: 'grey'
+    color: colors.azul
   }
 })

@@ -1,46 +1,40 @@
-import { StyleSheet, View, TextInput } from 'react-native'
-import React from 'react'
-import { colors } from '../global/colors'
+import { StyleSheet, View, TextInput, Pressable } from "react-native";
+import React from "react";
+import { colors } from "../global/colors";
 
-
-const Search = ({keyWord, setKeyWord }) => {
-
+const Search = ({ keyWord, setKeyWord }) => {
   return (
-    
     <View style={styles.container}>
-        <TextInput
-            style={styles.input}
-            placeholder="Buscar"
-            value={keyWord}
-            onChangeText={setKeyWord}
-        />      
-        
+      <TextInput
+        style={styles.input}
+        placeholder=" Buscar"
+        placeholderTextColor={colors.gris}
+        value={keyWord}
+        onChangeText={setKeyWord}
+      />
     </View>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;
 
 const styles = StyleSheet.create({
-    container:{
-        flexDirection: 'row',
-        backgroundColor: 'red',
-        height: 50,
-        width: '100%',
-        justifyContent: 'space-evenly',
-        alignItems:'center'
-    },
+  container: {
+    flexDirection: "row",
+    backgroundColor: colors.fondo,
+    height: 50,
+    width: "100%",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
 
-    input:{
-        backgroundColor: colors.crema,
-        height: 40,
-        width: '90%',
-        borderRadius: 5,
-        margin: 5,
-    },
-
-    pressable:{
-        flexDirection: 'row',
-        
-    }
-})
+  input: {
+    backgroundColor: colors.fondo,
+    borderWidth:1,
+    borderColor: colors.azul,
+    height: 40,
+    width: "90%",
+    borderRadius: 5,
+    margin: 5,
+  },
+});

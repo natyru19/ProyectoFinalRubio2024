@@ -76,14 +76,14 @@ const SignUpScreen = ({ navigation }) => {
           isSecure={true}
         />
         <Pressable style={styles.pressable} onPress={onSubmit}>
-           <Text style={styles.text}>Aceptar</Text>
+           <Text style={styles.textAceptar}>Aceptar</Text>
         </Pressable>
         <Pressable onPress={() => navigation.navigate("LoginScreen")}>
-          <Text >
-            <Text style={styles.sub}>
+          <Text>
+            <Text style={styles.text}>
               ¿Ya tienes una cuenta?
             </Text>
-            <Text style={styles.subLink}>
+            <Text style={styles.textIniciaSesion}>
               Inicia sesión
             </Text>
           </Text>
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.grisOscuro
+    backgroundColor:colors.azul
   },
 
   container: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.grisOscuro,
+    backgroundColor: colors.azul,
     gap: 15,
     paddingVertical: 20,
     borderRadius: 10
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
 
   pressable:{
     marginTop: 10,
-    backgroundColor: colors.grisClaro,
+    backgroundColor: colors.gris,
     width: 150,
     height: 40,
     justifyContent: 'center',
@@ -131,14 +131,20 @@ const styles = StyleSheet.create({
     borderRadius: 5
 },
 
-sub:{
+textAceptar:{
+  color: colors.azul,
+  fontSize: 16
+},
+
+text:{
   fontSize: 14,
     fontFamily: "LibreBaskerville",
     color: "black",
     fontStyle: 'italic'
     
 },
-  subLink: {
+
+textIniciaSesion: {
     fontSize: 14,
     fontFamily: "LibreBaskerville",
     color: "black",

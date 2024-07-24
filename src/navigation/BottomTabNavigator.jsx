@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     },
 
     tabBar:{
-      backgroundColor: colors.marronClaro
+      backgroundColor: colors.azul
     }
 })
