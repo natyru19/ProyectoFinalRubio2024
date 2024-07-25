@@ -10,6 +10,7 @@ const ProductItem = ({ item, navigation }) => {
         resizeMode="contain"
         style={styles.img}
       />
+      <Text style={styles.textPrice}>$ {item.price}</Text>
     </View>
   );
 };
@@ -25,12 +26,20 @@ const styles = StyleSheet.create({
     minWidth: "90%",
     backgroundColor: colors.fondo,
   },
+
   img: {
     height: 200,
   },
+
   text: {
     alignSelf: "center",
     padding: 5,
     fontSize: 20,
   },
+
+  textPrice:{
+    alignSelf: 'center',
+    padding: 5,
+    fontSize: 16
+  }
 });

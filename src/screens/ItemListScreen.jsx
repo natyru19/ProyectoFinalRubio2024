@@ -36,7 +36,7 @@ const ItemListScreen = ({ navigation, route }) => {
       <FlatList
         data={searchedProducts}
         renderItem={({ item }) => (
-          <Pressable onPress={() => goToItemDetailScreen({ item })}>
+          <Pressable onPress={() => goToItemDetailScreen({ item })} style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
             <ProductItem item={item} navigation={navigation} />
           </Pressable>
         )}

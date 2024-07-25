@@ -21,6 +21,30 @@ export const shopApi = createApi({
             }
         }),
 
+        getProductById: builder.query({
+            query: (productId) => `products.json?orderBy="id"&equalTo=${productId}`,
+            transformResponse: (res) => {
+                const transformedResponse = Object.values(res);
+                if (transformedResponse.length) return transformedResponse[0];
+            },
+        }),
+
+        postOrder: builder.mutation({
+            query: ({ ...order }) => ({
+                url: "orders.json",
+                method: "POST",
+                body: order,
+            }),
+        }),
+
+        getOrdersByUser: builder.query({
+            query: (user) => `orders.json?orderBy="user"&equalTo="${user}"`,
+            transformResponse: (res) => {
+                const transformedResponse = Object.values(res);
+                return transformedResponse;
+            },
+        }),
+
         getProfileImage: builder.query({
             query: (localId) => `profileImages/${localId}.json`,
             providesTags: ["profileImageGet"]
@@ -43,6 +67,8 @@ export const {
     useGetCategoriesQuery,
     useGetProductsByCategoryQuery,
     useGetProductByIdQuery,
+    usePostOrderMutation,
+    useGetOrdersByUserQuery,
     useGetProfileImageQuery,
     usePostProfileImageMutation
  } = shopApi

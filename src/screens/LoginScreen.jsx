@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSignInMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/UserSlice";
+import { insertSession } from "../persistence";
 
 
 const LoginScreen = ({ navigation }) => {
@@ -18,14 +19,23 @@ const LoginScreen = ({ navigation }) => {
   const [triggerSignIn, result] = useSignInMutation()
 
   useEffect(()=>{
-    if(result.isSuccess) {
-      dispatch(
-        setUser({
-          email: result.data.email,
-          idToken: result.data.idToken,
-          localId: result.data.localId
-        })
-      )
+    if(result?.data && result.isSuccess) {
+      insertSession({
+        email: result.data.email,
+        localId: result.data.localId,
+        token: result.data.idToken,
+      }).then((response) => {
+        console.log(response)
+        dispatch(
+          setUser({
+            email: result.data.email,
+            idToken: result.data.idToken,
+            localId: result.data.localId,
+          })
+        )
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }, [result])
 
@@ -52,15 +62,20 @@ const LoginScreen = ({ navigation }) => {
             isSecure={true}
           />
         </View>
-        <Pressable style={styles.pressable} onPress={onSubmit}> 
+        <Pressable 
+          style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]} 
+          onPress={onSubmit}> 
           <Text style={styles.textIniciarSesion}>Iniciar sesión</Text>
         </Pressable>
           
-          <Pressable onPress={() => navigation.navigate("SignUpScreen")}>
-            <Text >
+          <Pressable 
+            onPress={() => navigation.navigate("SignUpScreen")}
+            style={({pressed}) => [styles.text, {opacity: pressed ? 0.6 : 1}]}>
+            <Text>
             <Text style={styles.text}>
               ¿Aún no tienes una cuenta?
             </Text>
+            <Text> </Text>
             <Text style={styles.textRegistrate}>
               Regístrate
             </Text>
@@ -130,7 +145,6 @@ textRegistrate: {
     fontSize: 14,
     fontFamily: "LibreBaskerville",
     color: "black",
-    textDecorationLine:'underline',
-    paddingLeft: 10,
+    textDecorationLine:'underline'
   }
 });

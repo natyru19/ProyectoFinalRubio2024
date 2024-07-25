@@ -6,7 +6,19 @@ import * as SplashScreen from 'expo-splash-screen'
 import Navigator from './src/navigation/Navigator'
 import { Provider } from 'react-redux';
 import store from './src/store'
+import { initSQLiteDB } from './src/persistence';
 
+
+(async () => {
+  try {
+      const response = await initSQLiteDB()
+      //console.log(response)
+      console.log({responseCreatingDB: response})
+      console.log("DB inicialized")
+  } catch (error) {
+      console.log({errorCreatingDB: error})
+    }
+})()
 
 export default function App() {
 

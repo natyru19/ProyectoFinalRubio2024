@@ -75,14 +75,19 @@ const SignUpScreen = ({ navigation }) => {
           error={errorConfirmPassword}
           isSecure={true}
         />
-        <Pressable style={styles.pressable} onPress={onSubmit}>
-           <Text style={styles.textAceptar}>Aceptar</Text>
+        <Pressable 
+          style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]} 
+          onPress={onSubmit}>
+          <Text style={styles.textAceptar}>Aceptar</Text>
         </Pressable>
-        <Pressable onPress={() => navigation.navigate("LoginScreen")}>
+        <Pressable 
+          onPress={() => navigation.navigate("LoginScreen")} 
+          style={({pressed}) => [styles.text, {opacity: pressed ? 0.6 : 1}]}>
           <Text>
             <Text style={styles.text}>
               ¿Ya tienes una cuenta?
             </Text>
+            <Text> </Text>
             <Text style={styles.textIniciaSesion}>
               Inicia sesión
             </Text>

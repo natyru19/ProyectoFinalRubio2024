@@ -11,6 +11,7 @@ import Header from "../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetProfileImageQuery } from "../services/shopServices";
 import { clearUser } from "../features/UserSlice";
+import { truncateSessionTable } from "../persistence";
 
 const ProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -21,8 +22,14 @@ const ProfileScreen = ({ navigation }) => {
   const defaultImageRoute = "../../assets/img/noUser.png";
 
   const logOut = async () => {
-    if (Platform.OS !== "web") await truncateSessionsTable();
-    dispatch(clearUser());
+    //if (Platform.OS !== "web") await truncateSessionsTable();
+    try {
+      const response = await truncateSessionTable()
+      console.log(response)
+      dispatch(clearUser());
+    } catch (error) {
+      console.log({errorLogOutDB: error})
+    }
   };
 
   return (

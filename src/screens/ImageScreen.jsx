@@ -49,9 +49,9 @@ const confirmImage = () => {
 
   dispatch(setCameraImage(image))
   triggerPostImage({image, localId})
-  if(isImageFromCamera) {
-    ExpoLibrary.createAssetAsync(imageURI)
-  }
+  // if(isImageFromCamera) {
+  //   ExpoLibrary.createAssetAsync(imageURI)
+  // }
   navigation.goBack()
   
 }

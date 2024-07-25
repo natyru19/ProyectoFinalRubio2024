@@ -3,18 +3,22 @@ import { useSelector } from "react-redux";
 import ProductItem from "../components/ProductItem";
 import Header from "../components/Header";
 import { colors } from "../global/colors";
+import { usePostOrderMutation } from "../services/shopServices";
 
 
-const FavoritesScreen = ({ navigation }) => {
-  const { items: products } = useSelector((state) => state.favorites.value)
-  
-  const goToItemDetailScreen = (item) => {
-    navigation.navigate("ItemDetailScreen", item);
-  };
+const ShoppingCartScreen = ({ navigation }) => {
+  const { items: products, total } = useSelector((state) => state.shoppingCart.value);
+
+  const [triggerPostOrder, result] = usePostOrderMutation()
+
+  const onConfirmOrder = () => {
+    triggerPostOrder({items: products, user: "pepe@gmail.com", total})
+  }
+
 
   return (
     <View style={styles.container}>
-      <Header title="Favoritos" />
+      <Header title="Carrito" />
 
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -22,7 +26,7 @@ const FavoritesScreen = ({ navigation }) => {
         renderItem={({ item }) => {
           return (
             <>
-              <Pressable onPress={() => goToItemDetailScreen({ item })}>
+              <Pressable>
                 <ProductItem item={item} navigation={navigation}/>
               </Pressable>
             </>
@@ -31,11 +35,18 @@ const FavoritesScreen = ({ navigation }) => {
         keyExtractor={(producto) => producto.id}
       >
       </FlatList>
+      <View style={styles.containerPressable}>
+        <Pressable onPress={onConfirmOrder} style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}>
+            <Text style={styles.textCompra}>Realizar compra</Text>
+            <Text> </Text>
+            <Text style={styles.text}>Total: $ {total}</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
 
-export default FavoritesScreen;
+export default ShoppingCartScreen
 
 const styles = StyleSheet.create({
   container: {

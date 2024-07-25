@@ -16,7 +16,7 @@ const Categories = ({navigation}) => {
           data={categories}
           renderItem={({item})=> 
           <Pressable
-            style={styles.pressable}
+            style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}
             onPress={()=>{goToItemListScreen({item})}}
           >
             <Text style={styles.text}>{item}</Text>

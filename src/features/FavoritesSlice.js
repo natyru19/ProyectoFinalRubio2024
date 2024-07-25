@@ -5,8 +5,6 @@ export const FavoritesSlice = createSlice({
   initialState: {
     value: {
       user: "userIdLogged",
-      updatedAt: new Date().toLocaleString(),
-      total: null,
       items: [],
     },
   },
@@ -15,40 +13,20 @@ export const FavoritesSlice = createSlice({
       const productRepeated = state.value.items.find(
         (item) => item.id === payload.id
       );
-      if (productRepeated) {
-        const itemsUpdated = state.value.items.map((item) => {
-          if (item.id === payload.id) {
-            item.quantity += payload.quantity;
-            return item;
-          }
-          return item;
-        });
-        const total = itemsUpdated.reduce(
-          (acc, currentItem) =>
-            (acc += currentItem.price * currentItem.quantity),
-          0
-        );
-        state.value = {
-          ...state.value,
-          items: itemsUpdated,
-          total,
-          updatedAt: new Date().toLocaleString(),
-        };
-      } else {
+
+      if (!productRepeated) {
+        console.log('agrego a favoritos no està repetido')
         state.value.items.push(payload);
-        const total = state.value.items.reduce(
-          (acc, currentItem) =>
-            (acc += currentItem.price * currentItem.quantity),
-          0
-        );
         state.value = {
-          ...state.value,
-          total,
-          updatedAt: new Date().toLocaleString(),
+          ...state.value
         };
+        }else{
+          console.log('No lo agrego porque ya est+a')
+        }
       }
-    },
-  },
+    }
+    
+  
 });
 
 export const { addFavoriteItem } = FavoritesSlice.actions;

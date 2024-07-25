@@ -1,15 +1,32 @@
-import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useDispatch } from "react-redux";
-import { addFavoriteItem } from "../features/FavoritesSlice";
+import { addShoppingCartItem } from "../features/ShoppingCartSlice"
 import { colors } from "../global/colors";
+import { addFavoriteItem } from "../features/FavoritesSlice";
+import { useState } from "react";
+
 
 const ItemDetail = ({ item }) => {
   const dispatch = useDispatch();
+  const [inFavorites, setInFavorites] = useState(false)
+
+  const handleAddShoppingCart = () => {
+    dispatch(addShoppingCartItem);
+    dispatch(addShoppingCartItem({ ...item, quantity: 1 }));
+  };
 
   const handleAddFavorites = () => {
+    console.log('Agregando a fav')
     dispatch(addFavoriteItem);
     dispatch(addFavoriteItem({ ...item, quantity: 1 }));
+    setInFavorites(!inFavorites)
   };
+
+  const handleRemoveFavorites =()=>{
+    console.log('quitando de fav')
+    //logica quitar
+    setInFavorites(!inFavorites)
+  }
 
   return (
     <View style={styles.container}>
@@ -20,17 +37,36 @@ const ItemDetail = ({ item }) => {
         style={styles.img}
       />
       <Text style={styles.desc}>{item.desc}</Text>
-      <Text>Cantidad disponible: {item.stock}</Text>
       <Text style={styles.price}>$ {item.price}</Text>
       <Pressable
         style={({ pressed }) => [
           styles.pressable,
           { opacity: pressed ? 0.6 : 1 },
         ]}
-        onPress={handleAddFavorites}
+        onPress={handleAddShoppingCart}
       >
-        <Text style={styles.text}>Agregar a favoritos</Text>
+        <Text style={styles.text}>Agregar al carrito</Text>
       </Pressable>
+
+    {inFavorites ?
+    <Pressable
+        style={({ pressed }) => [
+          styles.pressable,
+          { opacity: pressed ? 0.6 : 1 },
+      ]}
+      onPress={handleRemoveFavorites}
+    >
+        <Text style={styles.text}>Quitar de favoritos</Text>
+    </Pressable> :      
+    <Pressable
+      style={({ pressed }) => [
+      styles.pressable,
+        { opacity: pressed ? 0.6 : 1 },
+      ]}
+    onPress={handleAddFavorites}
+    >
+      <Text style={styles.text}>Agregar a favoritos</Text>
+    </Pressable>}
     </View>
   );
 };

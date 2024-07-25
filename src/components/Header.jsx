@@ -18,12 +18,14 @@ const styles = StyleSheet.create({
         width: '100%',        
         backgroundColor: colors.azul,
         justifyContent: 'center',
+        alignContent: 'center',
         alignItems: 'center'
     },
 
     text: {
         color: colors.crema2,
         fontSize: 22,
-        fontFamily: 'Diplomata'
+        fontFamily: 'Diplomata',
+        alignSelf: 'center'
       }
 })
