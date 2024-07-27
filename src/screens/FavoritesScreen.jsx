@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, Pressable, Text } from "react-native";
+import { StyleSheet, View, FlatList, Pressable } from "react-native";
 import { useSelector } from "react-redux";
 import ProductItem from "../components/ProductItem";
 import Header from "../components/Header";

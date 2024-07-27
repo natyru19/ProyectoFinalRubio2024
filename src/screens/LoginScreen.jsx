@@ -25,7 +25,7 @@ const LoginScreen = ({ navigation }) => {
         localId: result.data.localId,
         token: result.data.idToken,
       }).then((response) => {
-        console.log(response)
+        
         dispatch(
           setUser({
             email: result.data.email,
@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
           })
         )
       }).catch(err => {
-        console.log(err)
+        
       })
     }
   }, [result])

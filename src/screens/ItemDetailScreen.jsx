@@ -19,10 +19,5 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         alignItems: 'center',
-    },
-
-    text:{
-        fontFamily: 'LibreBaskerville',
-      fontSize: 20,
     }
 })

@@ -14,6 +14,7 @@ const Categories = ({navigation}) => {
   return (    
       <FlatList contentContainerStyle={styles.flat}
           data={categories}
+          numColumns={2}
           renderItem={({item})=> 
           <Pressable
             style={({pressed}) => [styles.pressable, {opacity: pressed ? 0.6 : 1}]}
@@ -30,9 +31,8 @@ export default Categories
 
 const styles = StyleSheet.create({
   flat:{
-    flexDirection: 'row',
+    flexDirection: 'column',
     flex: 1,
-    flexWrap:'wrap',
     justifyContent: 'center',
     alignItems:'center',
     alignContent:'center',

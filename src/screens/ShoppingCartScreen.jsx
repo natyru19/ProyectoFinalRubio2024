@@ -1,20 +1,25 @@
 import { StyleSheet, View, FlatList, Pressable, Text } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "../components/ProductItem";
 import Header from "../components/Header";
 import { colors } from "../global/colors";
 import { usePostOrderMutation } from "../services/shopServices";
+import { emptyCart } from "../features/ShoppingCartSlice";
 
 
 const ShoppingCartScreen = ({ navigation }) => {
   const { items: products, total } = useSelector((state) => state.shoppingCart.value);
+  const {user} = useSelector((state) => state.auth.value)
 
   const [triggerPostOrder, result] = usePostOrderMutation()
-
+  const dispatch = useDispatch()
   const onConfirmOrder = () => {
-    triggerPostOrder({items: products, user: "pepe@gmail.com", total})
+    triggerPostOrder({items: products, user, total})
+    //dispatch(emptyCart())
+    
   }
-
+  
+  
 
   return (
     <View style={styles.container}>
@@ -28,6 +33,7 @@ const ShoppingCartScreen = ({ navigation }) => {
             <>
               <Pressable>
                 <ProductItem item={item} navigation={navigation}/>
+                <Text style={{alignSelf: 'flex-end'}}>Cantidad: {item.quantity}</Text>
               </Pressable>
             </>
           );
@@ -69,15 +75,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 1,
     borderColor: colors.azul,
-    borderRadius: 5
+    borderRadius: 5,
+    backgroundColor: colors.azul
   },
 
   textCompra: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    color: colors.fondo
   },
 
   text: {
     fontWeight: 'bold',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    color: colors.fondo
   }
 });

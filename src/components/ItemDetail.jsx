@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
 import { useDispatch } from "react-redux";
 import { addShoppingCartItem } from "../features/ShoppingCartSlice"
 import { colors } from "../global/colors";
-import { addFavoriteItem } from "../features/FavoritesSlice";
+import { addFavoriteItem, removeFromFavorites } from "../features/FavoritesSlice";
 import { useState } from "react";
 
 
@@ -13,18 +13,16 @@ const ItemDetail = ({ item }) => {
   const handleAddShoppingCart = () => {
     dispatch(addShoppingCartItem);
     dispatch(addShoppingCartItem({ ...item, quantity: 1 }));
+    
   };
 
   const handleAddFavorites = () => {
-    console.log('Agregando a fav')
-    dispatch(addFavoriteItem);
-    dispatch(addFavoriteItem({ ...item, quantity: 1 }));
+    dispatch(addFavoriteItem),
+    dispatch(addFavoriteItem({ ...item, quantity: 1 })),
     setInFavorites(!inFavorites)
-  };
+  }
 
   const handleRemoveFavorites =()=>{
-    console.log('quitando de fav')
-    //logica quitar
     setInFavorites(!inFavorites)
   }
 
@@ -43,7 +41,7 @@ const ItemDetail = ({ item }) => {
           styles.pressable,
           { opacity: pressed ? 0.6 : 1 },
         ]}
-        onPress={handleAddShoppingCart}
+        onPress={handleAddShoppingCart} 
       >
         <Text style={styles.text}>Agregar al carrito</Text>
       </Pressable>
@@ -57,7 +55,7 @@ const ItemDetail = ({ item }) => {
       onPress={handleRemoveFavorites}
     >
         <Text style={styles.text}>Quitar de favoritos</Text>
-    </Pressable> :      
+    </Pressable> :   
     <Pressable
       style={({ pressed }) => [
       styles.pressable,
@@ -65,8 +63,10 @@ const ItemDetail = ({ item }) => {
       ]}
     onPress={handleAddFavorites}
     >
-      <Text style={styles.text}>Agregar a favoritos</Text>
-    </Pressable>}
+    <Text style={styles.text}>Agregar a favoritos</Text>
+    </Pressable>
+    }
+    
     </View>
   );
 };
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 25,
     marginBottom: 3,
+    fontFamily: 'LibreBaskerville',
   },
 
   img: {

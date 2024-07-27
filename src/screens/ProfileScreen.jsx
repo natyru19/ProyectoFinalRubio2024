@@ -25,10 +25,10 @@ const ProfileScreen = ({ navigation }) => {
     //if (Platform.OS !== "web") await truncateSessionsTable();
     try {
       const response = await truncateSessionTable()
-      console.log(response)
+      
       dispatch(clearUser());
     } catch (error) {
-      console.log({errorLogOutDB: error})
+      
     }
   };
 

@@ -4,24 +4,24 @@ export const FavoritesSlice = createSlice({
   name: "favorites",
   initialState: {
     value: {
-      user: "userIdLogged",
+      user: null,
       items: [],
     },
   },
   reducers: {
+
     addFavoriteItem: (state, { payload }) => {
       const productRepeated = state.value.items.find(
         (item) => item.id === payload.id
-      );
+      )
 
-      if (!productRepeated) {
-        console.log('agrego a favoritos no està repetido')
+      if (!productRepeated) {        
         state.value.items.push(payload);
         state.value = {
           ...state.value
         };
         }else{
-          console.log('No lo agrego porque ya est+a')
+          
         }
       }
     }

@@ -13,7 +13,7 @@ export const initSQLiteDB = () => {
             )
         })
     })
-    console.log("retorna la promesa")
+    
     return promise
 }
 
@@ -28,7 +28,7 @@ export const insertSession = ({email, localId, token}) => {
             )
         })
     })
-    console.log("insertando registro")
+    
     return promise
 }
 
@@ -43,7 +43,7 @@ export const getSession = () => {
             )
         })
     })
-    console.log("obteniendo la session")
+    
     return promise
 }
 
@@ -58,6 +58,6 @@ export const truncateSessionTable = () => {
             )
         })
     })
-    console.log("borrando la session")
+    
     return promise
 }

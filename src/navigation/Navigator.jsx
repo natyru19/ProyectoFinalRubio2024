@@ -13,23 +13,20 @@ const Navigator = () => {
 
   const { user } = useSelector((state) => state.auth.value)
   const dispatch = useDispatch()
-
   useEffect(() => {
     (async () => {
       try {
         const response = await getSession()
         if(response.rows.length){
           const user = response.rows._array[0]
-          console.log(user)
           dispatch(setUser({
             email: user.email,
             localId: user.localId,
             idToken: user.token
           }))
         }
-        //console.log(response)
       } catch (error) {
-        console.log(error)
+        
       }
     })()
   })

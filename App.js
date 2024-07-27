@@ -12,11 +12,9 @@ import { initSQLiteDB } from './src/persistence';
 (async () => {
   try {
       const response = await initSQLiteDB()
-      //console.log(response)
-      console.log({responseCreatingDB: response})
-      console.log("DB inicialized")
+      
   } catch (error) {
-      console.log({errorCreatingDB: error})
+      
     }
 })()
 
@@ -50,7 +48,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:colors.rosadoClaro,
+    backgroundColor:colors.azul,
   }
 })
 
